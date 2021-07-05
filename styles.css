@@ -1,0 +1,182 @@
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.hero {
+  min-height: 200vh;
+  background: url("assets/images/pic_1.jpg") center/cover no-repeat;
+}
+
+.hero__pricing {
+  min-height: 120vh;
+  background: url("assets/images/pic_2.jpg") center/cover no-repeat;
+}
+
+.hero__courses {
+  /* min-height: 30vh; */
+  background: url("assets/images/pic_3.jpg") center/cover no-repeat;
+}
+
+.btn {
+  filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.5));
+  background-color: #c271ff;
+  border-color: #c271ff;
+}
+
+.dropdown .btn {
+  filter: none;
+}
+
+.lead span,
+.hero__courses span {
+  color: #c271ff;
+}
+
+.hero__courses p {
+  font-family: "Coiny", cursive;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .hero nav {
+    margin-bottom: 20rem;
+  }
+
+  .hero .hero__action {
+    margin-bottom: 18rem;
+  }
+}
+
+.quotes {
+  min-height: 40vh;
+  background-color: #c271ff;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #c271ff;
+  width: 5%;
+  height: 10%;
+  top: 50%;
+  opacity: 1;
+}
+
+.quotes__item {
+  padding: 2rem;
+}
+
+.position-absolute {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.membership,
+.footer {
+  background-color: #071629;
+  min-height: 20vh;
+}
+
+.holberton_school-icon-check {
+  color: #82d24f;
+  font-size: 2rem;
+}
+
+.faq .col p {
+  opacity: 0.5;
+  font-family: sans-serif;
+}
+
+.filters {
+  min-height: 20vh;
+  background-color: #c271ff;
+}
+
+input[type="search"],
+select {
+  background-color: #979797;
+  opacity: 0.25;
+  border-radius: 3px 3px 0px 0px;
+}
+
+/* input:focus ~ .holberton_school-icon-search_1 {
+    display: none;
+  } */
+
+input[type="search"]::placeholder {
+  padding-left: 2rem;
+  color: white;
+}
+.holberton_school-icon-search_1 {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 20%;
+  left: 2%;
+}
+
+.filters span {
+  color: white;
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #c271ff;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+.loader.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* CAROUSEL */
+@media (max-width: 768px) {
+  :is(.videos-container, .latest-videos-container) .carousel-item > div {
+    display: none;
+  }
+  :is(.videos-container, .latest-videos-container)
+    .carousel-item
+    > div:first-child {
+    display: block;
+  }
+}
+
+:is(.videos-container, .latest-videos-container) .carousel-item.active,
+:is(.videos-container, .latest-videos-container) .carousel-item-next,
+:is(.videos-container, .latest-videos-container) .carousel-item-prev {
+  display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+  :is(.videos-container, .latest-videos-container) .carousel-item-right.active,
+  :is(.videos-container, .latest-videos-container) .carousel-item-next {
+    transform: translateX(33.333%);
+  }
+
+  :is(.videos-container, .latest-videos-container) .carousel-item-left.active,
+  :is(.videos-container, .latest-videos-container) .carousel-item-prev {
+    transform: translateX(-33.333%);
+  }
+}
+
+:is(.videos-container, .latest-videos-container) .carousel-item-right,
+:is(.videos-container, .latest-videos-container) .carousel-item-left {
+  transform: translateX(0);
+}
