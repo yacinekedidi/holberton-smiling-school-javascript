@@ -222,11 +222,12 @@ $(function () {
 
     $.get(url, function ({ courses }) {
       let markup = "";
-      courses.forEach((course) => {
-        markup += `<div class="row row-cols-1 align-items-start w-25">
-      <div class="col position-relative">
+      courses.forEach((course, i) => {
+        markup += `<div class="row row-cols-1  w-25  p-4">
+        <div class="card card-body p-1">
+      <div class="col position-relative w-100">
         <img
-          class="w-100 img-fluid"
+          class="img-fluid w-100"
           src=${course.thumb_url}
           alt=""
         />
@@ -237,23 +238,28 @@ $(function () {
         />
       </div>
       <div class="col">
-        <h4>${course.title}</h4>
-        <p>
+        <h4 class="">${course.title}</h4>
+        <p class="">
           ${course["sub-title"]}
         </p>
-        <div>
+        <div class="d-flex align-items-center">
           <img
             class="img-fluid w-25 rounded-circle"
             src=${course.author_pic_url}
             alt=""
           />
-          <span class="ml-2" style="color: #c271ff">${course.author}</span>
+          <span class="ml-2 text-nowrap" style="color: #c271ff">${
+            course.author
+          }</span>
         </div>
-        <div class="d-flex justify-content-between">
-          <div>
+        <div class="d-flex justify-content-between w-100">
+          <div class="d-flex align-items-end">
            ${generateStars(course.star)}
           </div>
-          <span class="mr-3" style="color: #c271ff">8min</span>
+          <span class="mr-3 align-self-end text-nowrap" style="color: #c271ff">${
+            course.duration
+          }</span>
+        </div>
         </div>
       </div>
     </div>`;
