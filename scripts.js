@@ -8,7 +8,6 @@ $(function () {
 
   // HELPERS
   function updateDOM(element, markup, which) {
-    // element.insertAdjacentHTML("afterbegin", markup);
     element.append(markup);
 
     if (which === "quotes")
@@ -19,13 +18,21 @@ $(function () {
 
   function generateStars(stars) {
     let markup = "";
-    for (let i = 0; i < stars; i++) {
+    let i = 0;
+    for (i = 0; i < stars; i++) {
       markup += ` <img
     class="img-fluid h-50"
     src="assets/images/star_on.png"
     alt=""
   />`;
     }
+    for (; i < 5; i++)
+      markup += `<img
+      class="img-fluid h-50"
+      src="assets/images/star_off.png"
+      alt=""
+    />`;
+
     return markup;
   }
 
@@ -62,70 +69,6 @@ $(function () {
   }
 
   items && loadQuotes();
-
-  // function loadVideos(url, videos, which) {
-  //   $.get(url, function (data) {
-  //     data.forEach((video) => {
-  //       let stars = "";
-  //       for (let i = 0; i < video.star; i++) {
-  //         stars += ` <img
-  //     class="img-fluid h-50"
-  //     src="assets/images/star_on.png"
-  //     alt=""
-  //   />`;
-  //       }
-  //       const markup = `<div class="row row-cols-1 align-items-start w-25">
-  //   <div class="col position-relative">
-  //     <img
-  //       class="w-100 img-fluid"
-  //       src=${video.thumb_url}
-  //       alt=""
-  //     />
-  //     <img
-  //       class="img-fluid h-50 position-absolute rounded-circle"
-  //       src="assets/images/play.png"
-  //       alt=""
-  //     />
-  //   </div>
-  //   <div class="col">
-  //     <h4>${video.title}</h4>
-  //     <p>
-  //       ${video["sub-title"]}
-  //     </p>
-  //     <div>
-  //       <img
-  //         class="img-fluid w-25 rounded-circle"
-  //         src=${video.author_pic_url}
-  //         alt=""
-  //       />
-  //       <span class="ml-2" style="color: #c271ff">${video.author}</span>
-  //     </div>
-  //     <div class="d-flex justify-content-between">
-  //       <div>
-  //        ${stars}
-  //       </div>
-  //       <span class="mr-3" style="color: #c271ff">${video.duration}</span>
-  //     </div>
-  //   </div>
-  // </div>`;
-
-  //       updateDOM(videos, markup, which);
-  //     });
-  //   });
-  // }
-
-  // videos &&
-  //   loadVideos(
-  //     `https://smileschool-api.hbtn.info/popular-tutorials`,
-  //     videos,
-  //     "videos"
-  //   );
-  // latestVideos &&
-  //   loadVideos(
-  //     `https://smileschool-api.hbtn.info/latest-videos`,
-  //     latestVideos,
-  //     "latest videos"
-  //   );
 
   function loadVideos(url, videos, which) {
     $.get(url, function (data) {
