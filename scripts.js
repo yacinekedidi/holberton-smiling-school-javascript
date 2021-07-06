@@ -1,21 +1,20 @@
 $(function () {
-  const loader = document.querySelector(".loader");
-  const loaderVideos = document.querySelector(".videos-container .loader");
-  const loaderLatestvideos = document.querySelector(
-    ".latest-videos-container .loader"
-  );
-  const items = document.querySelector(
-    "#carouselExampleControls .carousel-inner"
-  );
-  const videos = document.querySelector(".videos-container");
-  const latestVideos = document.querySelector(".latest-videos-container");
+  const loaderVideos = $(".videos-container .loader");
+  const loaderLatestvideos = $(".latest-videos-container .loader");
+
+  const items = $("#carouselExampleControls .carousel-inner");
+  const videos = $(".videos-container");
+  const latestVideos = $(".latest-videos-container");
 
   // HELPERS
   function updateDOM(element, markup, which) {
-    element.insertAdjacentHTML("afterbegin", markup);
-    if (which === "quotes") loader.classList.add("hidden");
-    else if (which === "videos") loaderVideos.classList.add("hidden");
-    else loaderLatestvideos.classList.add("hidden");
+    // element.insertAdjacentHTML("afterbegin", markup);
+    element.append(markup);
+
+    if (which === "quotes")
+      $("#carouselExampleControls .loader").addClass("hidden");
+    else if (which === "videos") loaderVideos.addClass("hidden");
+    else loaderLatestvideos.addClass("hidden");
   }
 
   function generateStars(stars) {
@@ -219,6 +218,8 @@ $(function () {
   });
 
   function renderVideos(url) {
+    $(".videos-results  .loader").removeClass("hidden");
+
     $.get(url, function ({ courses }) {
       let markup = "";
       courses.forEach((course) => {
@@ -261,12 +262,14 @@ $(function () {
         () => `${courses.length} ${courses.length > 1 ? "videos" : "video"}`
       );
       $(".courses-videos").html(() => markup);
+      $(".videos-results .loader").addClass("hidden");
     });
   }
+  $(".videos-results  .loader").removeClass("hidden");
 
   renderVideos(`https://smileschool-api.hbtn.info/courses`);
 
-  $("form").submit(function (e) {
+  function initVideos(e) {
     e.preventDefault();
     const keywords = $(".search-input").val();
     const topic = $(".topic option:selected").text();
@@ -274,9 +277,16 @@ $(function () {
     const url = `https://smileschool-api.hbtn.info/courses?q=${keywords}&sort=${sortBy}&topic=${topic}`;
 
     renderVideos(url);
-  });
+  }
 
-  let script = document.createElement("script");
-  script.src = "myJqFile.js";
-  document.head.appendChild(script);
+  $("form").submit(initVideos);
+  $(".search-input").on("input", initVideos);
+  $(".topic").change(initVideos);
+  $(".sort-by").change(initVideos);
+
+  $("head").append([
+    $("<script>").attr({
+      src: "myJqFile.js",
+    }),
+  ]);
 });
